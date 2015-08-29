@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+{% block content%}
+
+<h2>{{category.name}}</h2>
+
+<h3>You are updating {{item.name}}</h3>
+
+<form action= "{{ url_for('editItem', category_id=category.id, item_id=item.id ) }}" method = "post">
+	<div class="form-group">
+		<label for ="name">Name:</label>
+		<input type= "text" maxlength="80" class="form-control" name="name" value="{{item.name}}">
+	</div>
+	<div class="form-group">
+		<label for ="description">Description:</label>
+		<input type = "textarea" maxlength="1000" class= "form-control" name="description" value="{{item.description}}">
+	</div>
+
+	<div class="form-group">
+		<label for ="picture">Image 1:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_1" value="{{item.picture_1}}">
+	</div>
+	<a href="{{item.picture_1}}"><img src="{{item.picture_1}}" height="400" width="400"></a>
+	<div class="form-group">
+		<label for ="picture">Image 2:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_2" value="{{item.picture_2}}">
+	</div>
+	<a href="{{item.picture_2}}"><img src="{{item.picture_2}}" height="400" width="400"></a>
+	<div class="form-group">
+		<label for ="picture">Image 3:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_3" value="{{item.picture_3}}">
+	</div>
+	<a href="{{item.picture_3}}"><img src="{{item.picture_3}}" height="400" width="400"></a>
+	<div class="form-group">
+		<label for ="picture">Image 4:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_4" value="{{item.picture_4}}">
+	</div>
+	
+	<a href="{{item.picture_4}}" ><img src="{{item.picture_4}}" height="400" width="400"></a>
+
+	<br>
+	<div>
+		<button type="submit" class="btn btn-default" id="submit" type="submit">Save</button>
+		<a href='{{url_for('showItem', category_id=category.id, item_id=item.id)}}'>
+			<button class= "htn htn-default delete">Cancel</button>
+		</a>
+	</div>
+
+</form>
+
+
+
+
+{% endblock %}

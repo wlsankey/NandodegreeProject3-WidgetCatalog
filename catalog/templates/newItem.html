@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content%}
+
+<h2>{{category.name}}</h2>
+
+<h3>You are creating a new item for {{category.name}}:</h3>
+
+<form action= '{{ url_for('newItem', category_id=category.id) }}' method = "post">
+	<div class="form-group">
+		<label for ="name">Name:</label>
+		<input type= "text" maxlength="80" class="form-control" name="name" placeholder="Type name">
+	</div>
+	<div class="form-group">
+		<label for ="description">Description:</label>
+		<input type = "textarea" maxlength="1000" class= "form-control" name="description" placeholder="Provide a concise description.">
+	</div>
+	<div class="form-group">
+		<label for ="picture">Image 1:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_1" placeholder="Insert the link to an image here.">
+	</div>
+	<div class="form-group">
+		<label for ="picture">Image 2:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_2" placeholder="Insert the link to an image here.">
+	</div>
+		<div class="form-group">
+		<label for ="picture">Image 3:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_3" placeholder="Insert the link to an image here.">
+	</div>
+	<div class="form-group">
+		<label for ="picture">Image 4:</label>
+		<input type="text" maxlength= "300" class= "form-control" name= "picture_4" placeholder="Insert the link to an image here.">
+	</div>
+
+	<br>
+	<div>
+		<button type="submit" class="btn btn-default" id="submit" type="submit">Save</button>
+	</div>
+
+</form>
+
+	<a href='{{url_for('showCategory', category_id=category.id)}}'>
+	<button class= "htn htn-default delete">Cancel</button>
+</a>
+
+
+
+
+
+{% endblock %}

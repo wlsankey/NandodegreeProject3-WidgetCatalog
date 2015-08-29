@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+
+
+
+{% block content %}
+<div class= "container-fluid">
+	<div class ="row">
+		<div class = 'flash text-center h4'>
+		      {% with messages = get_flashed_messages() %}
+      			{% if messages %}
+          
+        		<ul>
+		        {% for message in messages %}
+		            <li> <strong> {{ message }} </strong> </li>
+		        {% endfor %}
+		        </ul>
+		        {% endif %}
+		    {% endwith %}
+
+		</div>
+	</div>
+	<div class="row">
+		<div class= "col-sm-3 col-md-2 nav sidebar">
+			<a href="{{url_for('ShowCategories_all')}}"><h2>All</h2></a>
+			<h4>
+				<a href="{{url_for('createNewCategory')}}">Create new category</a>
+			</h4>
+			<br>
+			{% for category in categories%}
+			<h3><a href="{{ url_for('showCategory', category_id=category.id) }}">{{category.name}}</a></h3><br>
+			{% endfor %}
+		</div>	
+		
+			<div class="col-sm-9 col-sm col-md-10 col-md main">
+				{% for item in items %}
+				<div class="col-md-2">
+					<a href="{{ url_for('showCategory', category_id=item.category_id) }}"><img src="{{item.picture_1}}" class="img-rounded, img-responsive" height="100" width="100"></a>
+				</div>
+				<div class="col-md-2">
+					<a href="{{ url_for('showCategory', category_id=item.category_id) }}"><img src="{{item.picture_2}}" class="img-rounded, img-responsive" height="100" width="100"></a>
+				</div>
+				{% endfor %}
+			</div>
+
+	</div>
+</div>
+
+{% endblock %}

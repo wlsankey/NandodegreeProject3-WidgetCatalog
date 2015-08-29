@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content%}
+
+<div class="row text-center">
+	<h2>All Categories</h2>
+</div>
+<div class="row text-center">
+	{% for category in all_categories %}
+	<a href="{{ url_for('showCategory', category_id=category.id ) }}"><h3>{{category.name}}</h3></a>
+	<br>
+	{% endfor %}
+</div>
+
+{% endblock %}
