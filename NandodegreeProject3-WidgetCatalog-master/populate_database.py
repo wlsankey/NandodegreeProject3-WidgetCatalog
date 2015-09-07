@@ -28,6 +28,16 @@ session = DBSession()
 
 #JSON Categories to populate application for testing
 
+
+user_input = Users(
+  id=1,
+  name="William Sankey",
+  email="william.sankey@gmail.com"
+  )
+session.add(user_input)
+session.commit()
+
+
 category_json = json.loads("""{
   "all_categories": [
     {
@@ -75,10 +85,15 @@ category_json = json.loads("""{
   ]
 }""")
 
-# for e in category_json['all_categories']:
-#   category_input = Category(name=str(e['name']), id=str(e['id']), no_of_visits=0, user_id=1)
-#   session.add(category_input)
-#   session.commit()
+for e in category_json['all_categories']:
+  category_input = Category(
+    name=str(e['name']), 
+    id=str(e['id']), 
+    no_of_visits=0, 
+    user_id=1
+    )
+  session.add(category_input)
+  session.commit()
 
 
 items_json = json.loads("""

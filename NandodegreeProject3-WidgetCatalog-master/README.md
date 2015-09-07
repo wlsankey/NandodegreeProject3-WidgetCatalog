@@ -1,3 +1,10 @@
+BRIEF DESCRIPTION OF APPLICATION:
+This web application is called Widget Catalog. It allows users to input categories and assign items to those categories. 
+
+The homeplage (localhost://9080) displays a images of popular items in the databse ranked ranked by the number of visits. The sidebar displays the most popular categories by the number of visits.
+
+The page localhost://9080/category/all displays a list of all categories in the database in alphabetical order.
+
 
 
 #INITIAL STEPS: ADJUSTING THE DEVELOPMENT ENVIRONMENT
@@ -5,27 +12,24 @@
 This step demonstates how to update your vagrant configuration for the appropriate forward ports 
 
 1. From your command line interface (git bash recommmeneded), go to the appropriate folder where you would like to setup and run the application and files.
+
 2. Once there, run vagrant environment (or setup a new vagrant environment using "vagrant init" and the virtualbox preferred--in this case "ubuntu/trusty32"). Type "vagrant init ubuntu/trusty32". If you are just setting up a vagrant environment be sure to adjust the Vagrantfile and add the following provisioning and configuration information:
 
   config.vm.box = "ubuntu/trusty32"
-  config.vm.network "forwarded_port", guest: 8090, host: 8090
+  config.vm.network "forwarded_port", guest: 9080, host: 9080
 
-The second configuration line adjustment modifies the setup forward ports to include forward port 8090--which is the forward port the application is written to run on from the localhost.
+  (Note that if you already using these forward ports, please select another unused port number and adjust the app accordingly to run on that port: Adjust the runserver.py file)
 
-2. Run the following commands from the command line to install the appropriate programs that the application will utilize. Wait for the applications to download and install before proceeding with the next command. 
+The second configuration line adjustment modifies the setup forward ports to include forward port 9080--which is the forward port the application is written to run on from the localhost.
 
-	a. apt-get -qqy install postgresql python-psycopg2
-	b. apt-get -qqy install python-flask python-sqlalchemy
-	c. apt-get -qqy install python-pip
-	d. pip install bleach
-	e. pip install oauth2client
-	f. pip install requests
-	g. pip install httplib2
+
+1. "vagrant ssh" -- enter your secure linux shell.
+2. Move within the directory to the top of the downloaded respoitory directory.
 
 
 #STEP 1: CREATE DATABASE
 
-1. In command line go to folder "catalog" in directory.
+1. In command line go to the top folder in the downloaded repository in the directory.
 2. Run "psql" to start postgres
 3. Once open type "CREATE DATABASE model;" where "model" is the name of the database being created for the application.
 4. Next exit psql and return the directory folder and command line interface.
