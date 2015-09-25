@@ -1,3 +1,5 @@
+# IMPORT ORM (sqlalchemy) and setup relational database tables for application backend
+
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -39,7 +41,7 @@ class Category(Base):
 
 	@property
 	def serialize(self):
-		#Returns object in easily serializable format
+		# Returns object in easily serializable format
 		return {
 			'id' : self.id,
 			'name' : self.name,
@@ -62,14 +64,16 @@ class Item(Base):
 	no_of_likes = Column(Integer)
 	no_of_visits = Column(Integer)
 	category_id = Column(Integer, ForeignKey('category.id'))
-	category = relationship(Category)
+	category = relationship(Category,
+		backref=backref('items',
+			cascade='delete,all'))
 	created_date = Column(DateTime(timezone=True))
 	user_id = Column(Integer, ForeignKey('users.id'))
 	users = relationship(Users)
 
 	@property
 	def serialize(self):
-		#Returns object in easily serializable format
+		# Returns object in easily serializable format
 		return {
 			'id' : self.id,
 			'name' : self.name,
@@ -85,6 +89,7 @@ class Item(Base):
 			'created_date' : self.created_date,
 		}
 
+# Comments_Item is a future table for adding user comments to items within categories. 
 class Comments_Item(Base):
 	__tablename__='comments_item'
 

@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<div class="container">
-
+			{% if not login_session['username'] %}
 				<div class="row sign-in">
 					<a href="{{url_for('showLogin')}}">
 						<div class="col-md-offset-10">
@@ -21,6 +21,19 @@
 						</div>
 					</a>
 				</div>
+			{% else %}
+				<div class="row sign-in">
+					<a href="{{url_for('gdisconnect')}}">
+						<div class="col-md-offset-10">
+							<button class="btn btn-success" type="submit">Log out</button>
+						</div>
+					</a>
+				</div>
+
+
+			{%  endif %}
+
+			
 
 			<div class="row">
 				<div class="col-md-12 page-header text-center"><a href="{{url_for('showHomepage')}}"><h1>Widget Catalog</h1></a> </div>
