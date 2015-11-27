@@ -7,9 +7,10 @@ The page localhost://9080/category/all displays a list of all categories in the 
 
 
 
+
 #INITIAL STEPS: ADJUSTING THE DEVELOPMENT ENVIRONMENT
 
-This step demonstates how to update your vagrant configuration for the appropriate forward ports 
+This step demonstates how to update your vagrant configuration for the appropriate forward ports. Pyton 2.7 will be used in the setup of this application and its environment.
 
 1. From your command line interface (git bash recommmeneded), go to the appropriate folder where you would like to setup and run the application and files.
 
@@ -54,3 +55,20 @@ I have created some JSON data to populate the newly setup database with data ini
 This should allow the application to run in the web browser under localhost://9080
 
 For reference, some of the other keys files include the views.py file which contains all the views for the web application.
+
+
+
+JSON ENDPOINTS
+
+The following endpoint APIs are available which return JSON data from the application:
+1. RETURN ALL CATEGORIES: '/categeory/all/JSON'
+
+2. RETURN a specific Category by its I.D. : 
+   '/category/<int:category_id>/JSON'
+
+3. RETURN a specific item by its I.D.: 
+   '/category/<int:category_id>/item/<int:item_id>/JSON'
+
+4. RETURN all items in database ordered by popularity:
+	'/allitems/JSON'
+

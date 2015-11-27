@@ -68,7 +68,6 @@ def gconnect():
 
     # " Check that the access token is valid."
     access_token = credentials.access_token
-    print "PRINT ACCESS TOKEN TEST"
     print access_token
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
@@ -184,13 +183,9 @@ def gdisconnect():
 	
 	# credentials = login_session.get('credentials')
 	credentials = login_session.get('credentials')
-	print "TEST TEST TEST"
-	print credentials
-	print "END END END"
 	if credentials is None:
 		response = make_response(json.dumps('Current user is not connected.'), 401)
 		response.headers['Content-Type'] = 'application/json'
-		print "Credentials is NONE"
 		return response
 	# Execute HTTP GET request to revoke current token
 	access_token = credentials
@@ -289,10 +284,9 @@ def createNewCategory():
 
 @app.route('/category/<int:category_id>/edit', methods = ['GET', 'POST'])
 def editCategory(category_id):
-	
-	editedCategory = session.query(Category).filter_by(id=category_id).one()
 
-	# Objects needed for none-authorized users
+	# Objects needed to render public page OR authorized user pages
+	editedCategory = session.query(Category).filter_by(id=category_id).one()
 	creator = getUserInfo(editedCategory.user_id)
 	category_items = session.query(Item).filter_by(
 		category_id= category_id)
@@ -330,7 +324,7 @@ def editCategory(category_id):
 def deleteCategory(category_id):
 	deletedCategory = session.query(Category).filter_by(id=category_id).one()
 
-	# Objects needed for none authorized users
+	# Objects needed to render public page OR authorized user pages
 	creator = getUserInfo(deletedCategory.user_id)
 	category_items = session.query(Item).filter_by(
 		category_id= category_id)
